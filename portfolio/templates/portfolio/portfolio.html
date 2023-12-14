@@ -1,0 +1,39 @@
+<!-- portfolio/portfolio.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Portfolio</h1>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ project.title }}</h2>
+                            <p class="card-text">{{ project.description }}</p>
+                            
+                            <!-- Code snippet (if applicable) -->
+                            {% if project.code_snippet %}
+                                <pre><code>{{ project.code_snippet }}</code></pre>
+                            {% endif %}
+
+                            <!-- GitHub link (if applicable) -->
+                            {% if project.github_link %}
+                                <a href="{{ project.github_link }}" class="d-block mb-2">GitHub Repository</a>
+                            {% endif %}
+
+                            <!-- Live Demo link (if applicable) -->
+                            {% if project.live_demo_link %}
+                                <a href="{{ project.live_demo_link }}" class="d-block">Live Demo</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% if projects|length == 0 %}
+                <p class="col-12">No projects available.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

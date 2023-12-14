@@ -1,0 +1,25 @@
+<!--blog/post_list.html-->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Blog Posts Heading -->
+    <h1 class="mb-4">Blog Posts</h1>
+
+    <!-- Blog Posts List -->
+    <div class="list-group">
+      {% for post in posts %}
+        <a href="{% url 'post_detail' pk=post.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ post.title }}</h5>
+            <small>Published on {{ post.published_date }}</small>
+          </div>
+          <p class="mb-1">Preview or summary of the post...</p> <!-- Optional -->
+        </a>
+      {% endfor %}
+      {% if posts|length == 0 %}
+        <p class="list-group-item">No blog posts available.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

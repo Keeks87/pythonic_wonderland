@@ -1,0 +1,28 @@
+<!-- playground/playground.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Page Heading -->
+    <h1 class="mb-4">Code Playground</h1>
+
+    <!-- Code Snippets -->
+    {% for snippet in snippets %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <!-- Snippet Title -->
+          <h2 class="card-title">{{ snippet.title }}</h2>
+          
+          <!-- Code Block -->
+          <pre class="bg-light p-2 border rounded"><code>{{ snippet.code }}</code></pre>
+          
+          <!-- Snippet Description -->
+          <p class="card-text">{{ snippet.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    {% if snippets|length == 0 %}
+      <p>No code snippets available.</p>
+    {% endif %}
+  </div>
+{% endblock %}

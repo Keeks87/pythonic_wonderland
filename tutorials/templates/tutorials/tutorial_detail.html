@@ -1,0 +1,25 @@
+<!-- tutorials/tutorial_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Tutorial Title -->
+    <h1 class="mb-3">{{ tutorial.title }}</h1>
+
+    <!-- Tutorial Content -->
+    <p>{{ tutorial.content }}</p>
+
+    <!-- Sections Heading -->
+    <h2 class="mt-4 mb-2">Sections</h2>
+
+    <!-- Tutorial Sections -->
+    {% for section in tutorial.sections.all %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">{{ section.title }}</h3>
+          <p class="card-text">{{ section.content }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

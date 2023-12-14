@@ -1,0 +1,39 @@
+<!-- qna/qna_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Question Title -->
+    <h1 class="mb-3">{{ question.title }}</h1>
+
+    <!-- Question Text -->
+    <p>{{ question.text }}</p>
+
+    <!-- Answers Heading -->
+    <h2 class="mt-4 mb-2">Answers</h2>
+
+    <!-- Answers List -->
+    {% for answer in question.answers.all %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text">{{ answer.text }}</p>
+          <p class="text-muted"><small>Answered on {{ answer.created_date }}</small></p>
+        </div>
+      </div>
+    {% empty %}
+      <p>No answers yet.</p>
+    {% endfor %}
+
+    <!-- Answer Form -->
+    <div class="mt-4">
+      <h3>Your Answer</h3>
+      <form method="post" class="mt-2">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Post answer</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

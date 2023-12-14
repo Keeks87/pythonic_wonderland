@@ -1,0 +1,24 @@
+<!-- qna/qna_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Page Heading -->
+    <h1 class="mb-4">Questions</h1>
+
+    <!-- Questions List -->
+    <div class="list-group">
+      {% for question in questions %}
+        <a href="{% url 'qna_detail' pk=question.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ question.title }}</h5>
+            <small>Asked on {{ question.created_date }}</small>
+          </div>
+        </a>
+      {% endfor %}
+      {% if questions|length == 0 %}
+        <p class="list-group-item">No questions available.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
