@@ -45,7 +45,6 @@ Since running user-submitted code can be dangerous, it's crucial to avoid execut
 
 ### Errors to resolve
 
-- The social icons are visible in the footer, but not being displayed.
 - The social share links on the blog posts are not active yet, not is the comments.
 - Fix the layout of the tutorials.
 - Fix render site and GitHub pages
