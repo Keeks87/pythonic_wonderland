@@ -5,15 +5,15 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #333;
+    background: #000000;
+    color: #000000;
 }
 
 header {
-    background: #333;
+    background: #000000;
     /* background image in static folder */
     background: url(../images/header_background.png) no-repeat center center/cover;
-    color: #fff;
+    color: #000000;
     padding: 10px 0;
     text-align: center;
 }
@@ -29,7 +29,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -40,14 +40,15 @@ main {
 footer {
     text-align: center;
     padding: 20px 0;
-    background: #333;
+    background: #000000;
     /* background image in static folder */
     background: url(../images/header_background.png) no-repeat center center/cover;
-    color: #fff;
+    color: #000000;
 }
 
 footer p {
     margin: 5px;
+    color: #000;
 }
 
 /* media queries */
@@ -66,28 +67,3 @@ pre code {
     overflow-x: auto;
 }
 
-/* Style the links */
-a {
-    text-decoration: none; /* Remove underlines from links */
-    color: #000000; /* Set link color */
-    margin: 10px; /* Add spacing between the links */
-}
-  
-/* Style the Font Awesome icons */
-.fa {
-    font-size: 30px; /* Set the size of the icons */
-    margin-right: 10px; /* Add spacing between the icon and text (if needed) */
-}
-  
-/* Style individual icons (for specific social media icons) */
-.fa-instagram {
-color: #bc2a8d; /* Set the color for the Instagram icon */
-}
-  
-.fa-linkedin {
-color: #0077b5; /* Set the color for the LinkedIn icon */
-}
-
-.fa-github {
-color: #333; /* Set the color for the GitHub icon */
-}
