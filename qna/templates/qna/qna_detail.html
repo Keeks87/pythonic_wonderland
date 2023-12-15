@@ -7,7 +7,14 @@
     <h1 class="mb-3">{{ question.title }}</h1>
 
     <!-- Question Text -->
-    <p>{{ question.text }}</p>
+    <p>{{ question.text|linebreaks }}</p>
+
+    <!-- Question Code Snippet -->
+    {% if question.code_snippet %}
+      <div class="code-snippet">
+        <pre><code>{{ question.code_snippet }}</code></pre>
+      </div>
+    {% endif %}
 
     <!-- Answers Heading -->
     <h2 class="mt-4 mb-2">Answers</h2>
@@ -16,24 +23,22 @@
     {% for answer in question.answers.all %}
       <div class="card mb-3">
         <div class="card-body">
-          <p class="card-text">{{ answer.text }}</p>
+          <!-- Answer Text -->
+          <p class="card-text">{{ answer.text|linebreaks }}</p>
+          
+          <!-- Answer Code Snippet -->
+          {% if answer.code_snippet %}
+            <div class="code-snippet">
+              <pre><code>{{ answer.code_snippet }}</code></pre>
+            </div>
+          {% endif %}
+
+          <!-- Answered Date -->
           <p class="text-muted"><small>Answered on {{ answer.created_date }}</small></p>
         </div>
       </div>
     {% empty %}
       <p>No answers yet.</p>
     {% endfor %}
-
-    <!-- Answer Form -->
-    <div class="mt-4">
-      <h3>Your Answer</h3>
-      <form method="post" class="mt-2">
-        {% csrf_token %}
-        <div class="form-group">
-          {{ form.as_p }}
-        </div>
-        <button type="submit" class="btn btn-primary">Post answer</button>
-      </form>
-    </div>
   </div>
 {% endblock %}
