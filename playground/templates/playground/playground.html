@@ -17,7 +17,7 @@
           <pre class="bg-light p-2 border rounded"><code>{{ snippet.code }}</code></pre>
           
           <!-- Snippet Description -->
-          <p class="card-text">{{ snippet.description }}</p>
+          <p class="card-text">{{ snippet.description|linebreaks }}</p>
         </div>
       </div>
     {% endfor %}
