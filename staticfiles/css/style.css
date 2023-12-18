@@ -5,13 +5,15 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #333;
+    background: #bbbbbb;
+    color: #bbbbbb;
 }
 
 header {
-    background: #333;
-    color: #fff;
+    background: #bbbbbb;
+    /* background image in static folder */
+    background: url(../images/header_background.png) no-repeat center center/cover;
+    color: #bbbbbb;
     padding: 10px 0;
     text-align: center;
 }
@@ -27,7 +29,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #bbbbbb;
     text-decoration: none;
 }
 
@@ -38,6 +40,30 @@ main {
 footer {
     text-align: center;
     padding: 20px 0;
-    background: #333;
-    color: #fff;
+    background: #bbbbbb;
+    /* background image in static folder */
+    background: url(../images/header_background.png) no-repeat center center/cover;
+    color: #bbbbbb;
 }
+
+footer p {
+    margin: 5px;
+    color: #000;
+}
+
+/* media queries */
+@media(max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+pre code {
+    display: block;
+    background: #000000;
+    color: #ffffff;
+    padding: 20px;
+    overflow-x: auto;
+}
+

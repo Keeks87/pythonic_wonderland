@@ -45,6 +45,8 @@ Since running user-submitted code can be dangerous, it's crucial to avoid execut
 
 ### Errors to resolve
 
-- The social share links on the blog posts are not active yet, not is the comments.
+- The social share links on the blog posts are not active yet.
 - Fix the layout of the tutorials.
 - Fix render site and GitHub pages
+- Add back buttons for detailed pages
+- Links to open in new tab
