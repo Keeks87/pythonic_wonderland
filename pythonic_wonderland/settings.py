@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,17 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-!*7v6n=b7ond!&*6^fp*#kw5hndh4(jf-(y#hca+p@-%+(wr+b'
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = 'django-insecure-!*7v6n=b7ond!&*6^fp*#kw5hndh4(jf-(y#hca+p@-%+(wr+b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -43,9 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Whitenoise settings
-    'whitenoise.runserver_nostatic',
 
     # Local apps
     'blog',
@@ -63,9 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    # Whitenoise settings
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'pythonic_wonderland.urls'
@@ -93,11 +82,10 @@ WSGI_APPLICATION = 'pythonic_wonderland.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/pythonic_wonderland',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -140,9 +128,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Whitenoise settings
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Default primary key field type
