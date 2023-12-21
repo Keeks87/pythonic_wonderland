@@ -1,0 +1,20 @@
+databases:
+  - name: pythonic_wonderland
+    databaseName: pythonic_wonderland
+    user: pythonic_wonderland
+
+services:
+  - type: web
+    name: pythonic_wonderland
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn pythonic_wonderland.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pythonic_wonderland
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
