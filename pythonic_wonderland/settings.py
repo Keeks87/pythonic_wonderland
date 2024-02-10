@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'portfolio',
     'qna',
     'tutorials',
+
+    # Third-party apps
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -143,8 +146,29 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# AWS access keys for media storage on S3 bucket
+AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+
+# AWS S3 bucket settings
+AWS_STORAGE_BUCKET_NAME='pythonic-bucket-2024'
+AWS_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_FILE_OVERWRITE = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STORAGES = {
+
+    # Media file (image) management
+    "default" : {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage", 
+    },
+
+    # CSS and JS file management
+    "staticfiles" : {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+}
