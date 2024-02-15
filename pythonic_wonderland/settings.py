@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 import environ
 
 env = environ.Env()
@@ -23,18 +22,15 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY with .env
-SECRET_KEY = env("SECRET_KEY")
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-'''
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!*7v6n=b7ond!&*6^fp*#kw5hndh4(jf-(y#hca+p@-%+(wr+b'
-'''
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,17 +89,12 @@ WSGI_APPLICATION = 'pythonic_wonderland.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
-'''
-
-DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 # Password validation
@@ -136,39 +127,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "pythonic_wonderland/static")
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# AWS access keys for media storage on S3 bucket
-AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
-
-# AWS S3 bucket settings
-AWS_STORAGE_BUCKET_NAME='pythonic-bucket-2024'
-AWS_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_FILE_OVERWRITE = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STORAGES = {
-
-    # Media file (image) management
-    "default" : {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage", 
-    },
-
-    # CSS and JS file management
-    "staticfiles" : {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
-}
